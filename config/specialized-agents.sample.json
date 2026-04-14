@@ -1,0 +1,148 @@
+{
+  "agents": [
+    {
+      "id": "specialist-stitch-designer",
+      "name": "Specialist Stitch Designer",
+      "workspace": "~/.openclaw/specialized-agents/specialist-stitch-designer",
+      "agentDir": "~/.openclaw/agents/specialist-stitch-designer/agent",
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "bailian/qwen3.6-plus"
+        ]
+      },
+      "thinkingDefault": "adaptive",
+      "reasoningDefault": "off",
+      "identity": {
+        "name": "Specialist Stitch Designer",
+        "emoji": "🎨"
+      },
+      "tools": {
+        "exec": {
+          "security": "full",
+          "ask": "off"
+        }
+      }
+    },
+    {
+      "id": "specialist-frontend-fullstack",
+      "name": "Specialist Frontend Fullstack",
+      "workspace": "~/.openclaw/specialized-agents/specialist-frontend-fullstack",
+      "agentDir": "~/.openclaw/agents/specialist-frontend-fullstack/agent",
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "bailian/qwen3.6-plus"
+        ]
+      },
+      "thinkingDefault": "adaptive",
+      "reasoningDefault": "off",
+      "identity": {
+        "name": "Specialist Frontend Fullstack",
+        "emoji": "🖥️"
+      },
+      "tools": {
+        "exec": {
+          "security": "full",
+          "ask": "off"
+        }
+      }
+    },
+    {
+      "id": "specialist-backend-systems",
+      "name": "Specialist Backend Systems",
+      "workspace": "~/.openclaw/specialized-agents/specialist-backend-systems",
+      "agentDir": "~/.openclaw/agents/specialist-backend-systems/agent",
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "bailian/qwen3.6-plus"
+        ]
+      },
+      "thinkingDefault": "adaptive",
+      "reasoningDefault": "off",
+      "identity": {
+        "name": "Specialist Backend Systems",
+        "emoji": "⚙️"
+      },
+      "tools": {
+        "exec": {
+          "security": "full",
+          "ask": "off"
+        }
+      }
+    },
+    {
+      "id": "specialist-review-architect",
+      "name": "Specialist Review Architect",
+      "workspace": "~/.openclaw/specialized-agents/specialist-review-architect",
+      "agentDir": "~/.openclaw/agents/specialist-review-architect/agent",
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "bailian/qwen3.6-plus"
+        ]
+      },
+      "thinkingDefault": "xhigh",
+      "reasoningDefault": "off",
+      "identity": {
+        "name": "Specialist Review Architect",
+        "emoji": "🧭"
+      },
+      "tools": {
+        "exec": {
+          "security": "full",
+          "ask": "off"
+        }
+      }
+    },
+    {
+      "id": "specialist-qa-governor",
+      "name": "Specialist QA Governor",
+      "workspace": "~/.openclaw/specialized-agents/specialist-qa-governor",
+      "agentDir": "~/.openclaw/agents/specialist-qa-governor/agent",
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "bailian/qwen3.6-plus"
+        ]
+      },
+      "thinkingDefault": "xhigh",
+      "reasoningDefault": "off",
+      "identity": {
+        "name": "Specialist QA Governor",
+        "emoji": "✅"
+      },
+      "tools": {
+        "exec": {
+          "security": "full",
+          "ask": "off"
+        }
+      }
+    },
+    {
+      "id": "specialist-openclaw-governor",
+      "name": "Specialist OpenClaw Governor",
+      "workspace": "~/.openclaw/specialized-agents/specialist-openclaw-governor",
+      "agentDir": "~/.openclaw/agents/specialist-openclaw-governor/agent",
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "bailian/qwen3.6-plus"
+        ]
+      },
+      "thinkingDefault": "xhigh",
+      "reasoningDefault": "off",
+      "identity": {
+        "name": "Specialist OpenClaw Governor",
+        "emoji": "🧬"
+      },
+      "tools": {
+        "exec": {
+          "security": "full",
+          "ask": "off"
+        }
+      }
+    }
+  ]
+}
