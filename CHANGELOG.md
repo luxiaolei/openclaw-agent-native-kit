@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- GitHub Actions validation workflow for repo structure, script syntax, and end-to-end install smoke tests.
+- GitHub Actions release workflow that packages the kit and publishes a GitHub Release asset from a pushed tag.
+- `scripts/release_notes.py` to extract version-specific release notes from `CHANGELOG.md`.
+
 ## [0.1.0] - 2026-04-14
 
 ### Added

@@ -1,0 +1,62 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to release, for example v0.1.0
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    env:
+      RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Validate repo before release
+        run: |
+          python3 -m py_compile scripts/install.py scripts/validate.py scripts/release_notes.py
+          python3 scripts/validate.py --repo .
+
+      - name: Build release archive
+        run: |
+          mkdir -p dist
+          tar -czf "dist/openclaw-agent-native-kit-${RELEASE_TAG}.tar.gz" \
+            agent-templates \
+            config \
+            docs \
+            scripts \
+            skills \
+            README.md \
+            CHANGELOG.md \
+            LICENSE
+
+      - name: Generate release notes from changelog
+        run: python3 scripts/release_notes.py "${RELEASE_TAG}" > RELEASE_NOTES.md
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_TAG }}
+          body_path: RELEASE_NOTES.md
+          files: dist/openclaw-agent-native-kit-${{ env.RELEASE_TAG }}.tar.gz

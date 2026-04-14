@@ -1,0 +1,54 @@
+name: validate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Syntax check helper scripts
+        run: python3 -m py_compile scripts/install.py scripts/validate.py scripts/release_notes.py
+
+      - name: Validate repo layout
+        run: python3 scripts/validate.py --repo .
+
+      - name: Smoke test install and registration
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          import tempfile
+          from pathlib import Path
+
+          temp_home = Path(tempfile.mkdtemp(prefix='openclaw-home-'))
+          (temp_home / 'openclaw.json').write_text(
+              json.dumps({'agents': {'list': []}}, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          subprocess.run(
+              ['python3', 'scripts/install.py', '--home', str(temp_home), '--register'],
+              check=True,
+          )
+          subprocess.run(
+              ['python3', 'scripts/validate.py', '--home', str(temp_home)],
+              check=True,
+          )
+          PY
