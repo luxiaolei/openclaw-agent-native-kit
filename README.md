@@ -1,25 +1,51 @@
 # OpenClaw Agent Native Kit
 
-A portable pack of OpenClaw-native specialist agents and skills.
+> Portable OpenClaw-native specialist agents, governance skills, and autonomous conductor tooling.
+>
+> 一个可移植的 OpenClaw Agent Native 套件，提供专精 agents、共享 skills、治理能力和可复用安装方式，方便在多台机器上快速落地。
 
-一个可移植的 OpenClaw Agent Native 套件，包含专精 agents、共享 skills、注册样例和安装脚本，方便在多台机器上复用。
+## What it does
 
-## What this includes
+This repo gives you a ready-made **agent-native operating layer** for OpenClaw:
 
-- Specialized agent templates for:
-  - Stitch design
-  - Frontend fullstack
-  - Backend systems
-  - Review architect
-  - QA governor
-  - OpenClaw governor
-- Shared skills:
-  - `autonomous-master-plan-executor`
-  - `stitch`
-  - `openclaw-agent-governance`
-- Sample agent registration config
-- Installer script for copying the pack into `~/.openclaw`
-- Validation script for checking pack completeness and config consistency
+- a **specialist roster** instead of vague generalist fan-out
+- shared **execution and governance skills**
+- a **conductor-centered autonomous execution model**
+- reusable **agent templates**, **registration config**, and **install scripts**
+- a validation path so the pack is not just prompt files, but actually installable and governable
+
+## Core capabilities
+
+### Specialized agents
+
+- `specialist-stitch-designer`
+- `specialist-frontend-fullstack`
+- `specialist-backend-systems`
+- `specialist-review-architect`
+- `specialist-qa-governor`
+- `specialist-openclaw-governor`
+
+### Shared skills
+
+- `autonomous-master-plan-executor`
+- `stitch`
+- `openclaw-agent-governance`
+
+### Operational features
+
+- conductor-led task routing
+- staged plan/build/review execution
+- specialist-first delegation
+- browser-backed frontend and QA lanes
+- OpenClaw agent governance and packaging support
+- install + validation workflow for multi-machine rollout
+
+## Who this is for
+
+- teams building **multi-agent OpenClaw setups**
+- operators who want **specialists instead of one giant generalist agent**
+- people doing **agent-native engineering**, where many tasks are really “change the agent” tasks
+- anyone who wants to package and reuse OpenClaw specialists across machines
 
 ## Included structure
 
@@ -31,22 +57,17 @@ scripts/           install + validation helpers
 docs/              architecture and routing notes
 ```
 
-## Design goals
+## Why a git repo first
 
-- OpenClaw-native, not generic prompt bundles
-- specialists over vague generalist fan-out
-- conductor-centered autonomous execution
-- portable git repo first, plugin later if justified
+This pack is intentionally a **portable git repo first**, not a plugin first.
 
-## 为什么先做成 Git 仓库
+Why:
 
-先做成 repo 比直接做 plugin 更稳，因为它：
-
-- 更容易跨机器安装
-- 更容易版本管理
-- 更容易公开发布和协作
-- 更容易先验证结构是否稳定
-- 稳定后再 plugin 化也不晚
+- easier to install across machines
+- easier to version and review
+- easier to publish and collaborate on
+- easier to validate structure before pluginizing
+- plugin packaging can come later once the pack stabilizes
 
 ## Install
 
@@ -80,3 +101,4 @@ See also:
 - This repo intentionally excludes secrets, auth stores, and private memory.
 - Fill in environment-specific `TOOLS.md` details locally after install.
 - Adjust models, bindings, and channel routing per machine.
+- See `CHANGELOG.md` for release history.

@@ -48,6 +48,10 @@ def main():
             for fname in REQUIRED_AGENT_FILES:
                 if not (agent_dir / fname).exists():
                     errors += fail(f'missing template file for {agent}: {fname}')
+        if not (repo / 'README.md').exists():
+            errors += fail('missing repo README.md')
+        if not (repo / 'CHANGELOG.md').exists():
+            errors += fail('missing repo CHANGELOG.md')
         if not (repo / 'scripts' / 'install.py').exists():
             errors += fail('missing repo install.py')
         if not (repo / 'scripts' / 'validate.py').exists():
