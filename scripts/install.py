@@ -41,6 +41,5 @@ if args.register:
             by_id[agent['id']].update(agent)
         else:
             agent_list.append(agent)
-    cfg_path.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + '
-', encoding='utf-8')
+    cfg_path.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     print(f'Registered {len(sample)} specialists in {cfg_path}.')

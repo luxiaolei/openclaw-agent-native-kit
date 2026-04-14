@@ -89,6 +89,14 @@ See also:
 - `docs/architecture.md`
 - `docs/routing.md`
 
+## Automation
+
+This repo includes GitHub Actions for:
+
+- validation on `push` / `pull_request`
+- end-to-end install smoke testing
+- tag-driven release packaging from `CHANGELOG.md`
+
 ## Source inspirations
 
 - `stitch-skills`
