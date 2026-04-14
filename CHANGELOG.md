@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- Synced `autonomous-master-plan-executor` with the newer local version.
+- Tightened orchestration continuity guidance, failure isolation guidance, and child-session timeout handling.
+
 ## [0.1.0] - 2026-04-14
 
 ### Added

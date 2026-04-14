@@ -14,6 +14,7 @@ Turn a finished plan into a controlled execution program.
 - Prefer specialized agents for domain work. Use plain same-agent subagents only when no good specialist exists or the task is too small to justify a specialist handoff.
 - Keep leaf tasks small, single-goal, and stoppable.
 - Use push-based completion. After launching a wave, prefer `sessions_yield` over home-grown polling loops.
+- When a wave finishes and the next wave is already obvious, do not stop at “review complete”. Either open the next wave immediately or report the blocker preventing it.
 
 ## Start only after these checks
 
@@ -50,6 +51,7 @@ If a task crosses lanes, split it into separate checklist items rather than aski
 - Use reasoning/thinking `high` for meaningful implementation tasks.
 - Escalate to `xhigh` only for hard planning, hard debugging, governance design, or stage reviews that justify the cost.
 - Do not review after every tiny task. Review by milestone, wave, or risk boundary.
+- When a broad test batch fails, immediately isolate the smallest failing slice and rerun it before treating the batch as a real blocker.
 - Use an independent reviewer for staged review when possible.
 - Keep one parent wave to at most 3 concurrent children.
 - In live, high-context, or long-topic situations, prefer only 1 to 2 concurrent children.
@@ -61,6 +63,7 @@ If a task crosses lanes, split it into separate checklist items rather than aski
 - Use `sessions_send` only when a persistent specialist session should continue with its own history.
 - Pass explicit `agentId` whenever a specialist exists.
 - Pass explicit `runTimeoutSeconds` for every detached child.
+- If child creation times out repeatedly, treat that as an orchestration fault, not as product uncertainty.
 - Give each child a narrow prompt with:
   - exact objective
   - allowed scope
@@ -125,6 +128,22 @@ Before declaring success:
 - avoid touching unrelated dirty files that belong to other agents or humans
 - report blockers clearly if anything remains unresolved
 
+## Post-wave continuity policy
+
+After an accepted wave, do this in the same turn unless a real blocker prevents it:
+- write or finalize the wave review
+- update the active status file
+- update the roadmap if phase or wave state changed
+- decide explicitly between:
+  - open the next wave now, or
+  - report the hard blocker that prevents opening it
+
+Treat compaction, memory flushes, and other bookkeeping events as continuity events, not natural stop points.
+Persist state, then resume the next concrete task if the roadmap is already known.
+
+Timebox residual cleanup.
+If a grep-driven tail keeps expanding after one or two landing patches, stop calling it “just finishing the tail”, open a new narrow wave or task, and send a short checkpoint update instead of going silent.
+
 ## Failure policy
 
 If a wave degrades:
@@ -134,6 +153,8 @@ If a wave degrades:
 - report missing specialist coverage explicitly
 - if frontend/browser work is required and the qualified frontend specialist is absent, block and report that gap
 - if agent governance work is required and no governance specialist exists, block and report that gap
+- if repeated child-create timeout appears, record it as an execution-layer fault and switch quickly to one of: direct conductor execution for a narrow task, one-at-a-time detached retry after a fresh self-check, or an explicit blocked-state report
+- if a broad CLI/integration batch fails, suspect shared harness state when fixed ports or shared config are involved, then rerun the smallest targeted slice before escalating
 
 ## Resources
 
